@@ -9,9 +9,26 @@ import SwiftUI
 
 @main
 struct SwiftUIComponentsApp: App {
+    
+    @StateObject private var purchaseViewModel = PurchaseViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                PurchaseView()
+                    .environmentObject(purchaseViewModel)
+                    .tabItem {
+                        Image(systemName: "creditcard")
+                        Text("Purchase")
+                    }
+                
+                PurchaseStateView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("State")
+                    }
+            }
+            
         }
     }
 }
